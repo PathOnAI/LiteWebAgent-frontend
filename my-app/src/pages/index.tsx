@@ -131,12 +131,12 @@ export default function PlaygroundPage() {
   };
 
   return (
-    <Container fluid className="h-screen max-h-screen p-0">
-      <Grid className="h-full m-0" style={{ minHeight: '100vh' }}>
+    <Container fluid p={0} h="100vh">
+      <Grid h="100vh" m={0} gutter={0}>
         {/* Left Panel - Interactive Steps */}
-        <Grid.Col span={3} className="h-full">
-          <Paper shadow="md" className="h-full bg-gray-50">
-            <ScrollArea className="h-full p-4">
+        <Grid.Col span={3} h="100vh">
+          <Paper shadow="md" h="100vh" bg="gray.0">
+            <ScrollArea h="100vh" p="md">
               <InteractiveSteps
                 onRunInitialTest={runInitialTest}
                 onRunAdditionalTest={runAdditionalTest}
@@ -149,52 +149,50 @@ export default function PlaygroundPage() {
         </Grid.Col>
 
         {/* Right Panel - Browser View */}
-        <Grid.Col span={9} className="h-full">
-          <Paper 
-            shadow="md"
-            className="h-full flex flex-col"
-            style={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              minHeight: 'calc(100vh - 32px)'  // Accounting for container padding
-            }}
-          >
-            {browserUrl ? (
-              <div className="w-full h-full flex-grow relative">
-                <iframe
-                  src={browserUrl}
-                  sandbox="allow-same-origin allow-scripts"
-                  allow="clipboard-read; clipboard-write"
-                  className="absolute inset-0 w-full h-full border-0 bg-white"
-                  style={{ 
-                    pointerEvents: 'none',
-                    minHeight: '800px'  // Ensuring minimum height
-                  }}
-                />
+        <Grid.Col span={9} h="100vh">
+          {browserUrl ? (
+            <iframe
+              src={browserUrl}
+              sandbox="allow-same-origin allow-scripts"
+              allow="clipboard-read; clipboard-write"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                display: 'block'
+              }}
+            />
+          ) : (
+            <Paper
+              h="100vh"
+              display="flex"
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: '1rem'
+              }}
+            >
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <div style={{ fontSize: '1.125rem' }}>Browser session not started</div>
+              <div style={{ fontSize: '0.875rem', color: 'gray' }}>
+                Start a test to begin browsing
               </div>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center flex-col gap-4 text-gray-500">
-                <svg 
-                  width="64" 
-                  height="64" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                <div className="text-lg">Browser session not started</div>
-                <div className="text-sm">Start a test to begin browsing</div>
-              </div>
-            )}
-          </Paper>
+            </Paper>
+          )}
         </Grid.Col>
       </Grid>
     </Container>
