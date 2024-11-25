@@ -200,6 +200,7 @@ const addNewStep = (isAdditional: boolean) => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (event: any, isAdditional: boolean) => {
     const { active, over } = event;
     if (active.id !== over.id) {
