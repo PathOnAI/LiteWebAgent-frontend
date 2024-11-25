@@ -1,4 +1,4 @@
-export const WEBAGENT_SERVER_URL_BASE = 'https://loggia-webagent.vercel.app'
+export const WEBAGENT_SERVER_URL_BASE = 'https://lite-web-agent-backend.vercel.app/'
 
 export interface WebAgentRequestBody {
     starting_url: string;
