@@ -19,4 +19,5 @@ export default defineConfig({
     disabled: true,
   },
   srcDir: 'src',
+  outDir: "dist",
 });
